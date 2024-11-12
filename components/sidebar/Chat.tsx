@@ -9,17 +9,15 @@ type ChatProps = {
     message: string;
     time: string;
     status: string;
-    readStatus?: string; // Add readStatus field to message
+    readStatus?: string;
   }[];
   isActive?: boolean;
 };
 
 const Chat: React.FC<ChatProps> = ({
-  id,
   name,
   mobileNumber,
   messages,
-  isActive = false,
 }) => {
   // Get the latest message
   const latestMessage = messages[messages.length - 1];

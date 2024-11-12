@@ -1,7 +1,7 @@
 // app/chat/[contactId]/page.tsx
 "use client";
 
-import React, {useRef} from 'react';
+import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import jsonData from '@/app/data.json';
@@ -16,8 +16,7 @@ import { cn } from '@/lib/utils';
 export default function Page() {
   const params = useParams();
   const router = useRouter();
-  const { isMobile, toggleSidebar } = useSidebar();
-  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { isMobile} = useSidebar();
   const contactId = params?.contactId as string;
 
   const currentContact = jsonData.contacts.find(
