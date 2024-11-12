@@ -52,7 +52,7 @@ export function AppSidebar() {
                   <SidebarMenuItem
                     key={contact.id}
                     onClick={() => {
-                      router.push(`/chat/${contact.id}`);
+                      router.push(`/${contact.id}`);
                       if (isMobile) toggleSidebar();
                     }}
                     className={isActive ? "bg-background border-2 rounded-lg" : ""}

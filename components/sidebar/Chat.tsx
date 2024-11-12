@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../ui/button";
 
 type ChatProps = {
   id: string;
@@ -8,6 +9,7 @@ type ChatProps = {
     message: string;
     time: string;
     status: string;
+    readStatus?: string; // Add readStatus field to message
   }[];
   isActive?: boolean;
 };
@@ -31,11 +33,14 @@ const Chat: React.FC<ChatProps> = ({
     return text;
   };
 
+  // Function to count unread messages
+  const unreadCount = messages.filter((msg) => msg.readStatus === "unread").length;
+
   return (
     <div className="flex p-2 justify-between items-center hover:bg-accent rounded-lg cursor-pointer">
       <div className="flex gap-2 items-center">
         <div className="flex-shrink-0 mr-3">
-          <div className="bg-background rounded-full w-10 h-10 flex items-center justify-center text-lg font-medium">
+          <div className="bg-muted rounded-full w-10 h-10 flex items-center justify-center text-lg font-medium">
             {name.charAt(0).toUpperCase()}
           </div>
         </div>
@@ -45,9 +50,17 @@ const Chat: React.FC<ChatProps> = ({
           <p className="text-xs text-muted-foreground">
             {truncateMessage(latestMessage.message, 5)}
           </p>
+          <Button variant="outline" size="sm" className="mt-2 w-12"> + Add </Button>
         </div>
       </div>
-      <div className="text-sm text-muted-foreground">{latestMessage.time}</div>
+      <div className="flex flex-col items-center">
+        <div className="text-sm text-muted-foreground">{latestMessage.time}</div>
+        {unreadCount > 0 && (
+          <div className=" bg-foreground text-background text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center mt-1">
+            {unreadCount}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
