@@ -12,9 +12,9 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useRouter, useParams } from "next/navigation";
-import Chat from "./Chat";
+import Chat from "./Contacts";
 import jsonData from "@/app/data.json";
-import Header from "./Header";
+import Header from "./TopSection";
 
 export function AppSidebar() {
   const router = useRouter();
